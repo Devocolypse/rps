@@ -99,7 +99,7 @@ function playGame(rounds = 1) {
 
     // report the final score
     console.log(
-        `
+    `
     Final score
     -----------
     You: ${humanScore}
