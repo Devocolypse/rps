@@ -11,3 +11,9 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+
+function getHumanChoice() {
+    // create new string variable "choice"
+    // ask user "rock, paper, or scissors?" and input answer into "choice"
+    // return choice
+}
