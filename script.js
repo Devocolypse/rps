@@ -23,3 +23,16 @@ function getHumanChoice() {
     // return choice
     return choice;
 }
+
+function playRound(humanChoice, computerChoice) {
+    // convert humanChoice (HC) to lowercase
+    // convert computerChoice (CC) to lowercase
+    // create a new string variable called "winner"
+    // IF CC equals "rock" and HC equals "scissors", input "You Lose! Rock beats scissors." into "winner" and increment score
+    // IF CC equals "paper" and HC equals "rock", input "You Lose! Paper beats rock." into "winner" and increment score
+    // IF CC equals "scissors" and HC equals "paper", input "You Lose! Scissors beats paper." into "winner" and increment score
+    // IF CC equals "rock" and HC equals "paper", input "You Win! Paper beats rock." into "winner" and increment score
+    // IF CC equals "paper" and HC equals "scissors", input "You Win! Scissors beats paper." into "winner" and increment score
+    // IF CC equals "scissors" and HC equals "rock", input "You Win! Rock beats scissors." into "winner" and increment score
+    // log the winner to the console
+}
