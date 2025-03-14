@@ -14,6 +14,9 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     // create new string variable "choice"
+    let choice;
     // ask user "rock, paper, or scissors?" and input answer into "choice"
+    choice = prompt("Rock, paper, or scissors?");
     // return choice
+    return choice;
 }
