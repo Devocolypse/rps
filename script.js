@@ -26,13 +26,44 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
     // convert humanChoice (HC) to lowercase
+    humanChoice = humanChoice.toLowerCase();
     // convert computerChoice (CC) to lowercase
+    computerChoice = computerChoice.toLowerCase();
     // create a new string variable called "winner"
+    let winner;
+
+    console.log("Computer has chosen " + computerChoice)
+    console.log("Player has chosen " + humanChoice)
+
     // IF CC equals "rock" and HC equals "scissors", input "You Lose! Rock beats scissors." into "winner" and increment score
-    // IF CC equals "paper" and HC equals "rock", input "You Lose! Paper beats rock." into "winner" and increment score
-    // IF CC equals "scissors" and HC equals "paper", input "You Lose! Scissors beats paper." into "winner" and increment score
-    // IF CC equals "rock" and HC equals "paper", input "You Win! Paper beats rock." into "winner" and increment score
-    // IF CC equals "paper" and HC equals "scissors", input "You Win! Scissors beats paper." into "winner" and increment score
-    // IF CC equals "scissors" and HC equals "rock", input "You Win! Rock beats scissors." into "winner" and increment score
-    // log the winner to the console
+    if (computerChoice === "rock" && humanChoice === "scissors") {
+        winner = "You Lose! Rock beats scissors";
+        computerScore++;
+    } else if (computerChoice === "paper" && humanChoice === "rock") {
+        // IF CC equals "paper" and HC equals "rock", input "You Lose! Paper beats rock." into "winner" and increment score
+        winner = "You Lose! Paper beats rock.";
+        computerScore++;
+    } else if (computerChoice === "scissors" && humanChoice === "paper") {
+        // IF CC equals "scissors" and HC equals "paper", input "You Lose! Scissors beats paper." into "winner" and increment score
+        winner = "You Lose! Scissors beats paper.";
+        computerScore++;
+    } else if (computerChoice === "rock" && humanChoice === "paper") {
+        // IF CC equals "rock" and HC equals "paper", input "You Win! Paper beats rock." into "winner" and increment score
+        winner = "You Win! Paper beats rock."
+        humanScore++;
+    } else if (computerChoice === "paper" && humanChoice === "scissors") {
+        // IF CC equals "paper" and HC equals "scissors", input "You Win! Scissors beats paper." into "winner" and increment score
+        winner = "You win! Scissors beats papers."
+        humanScore++;
+    } else if (computerChoice === "scissors" && humanChoice === "rock") {
+        // IF CC equals "scissors" and HC equals "rock", input "You Win! Rock beats scissors." into "winner" and increment score
+        winner = "You win! Rock beats scissors.";
+        humanScore++;
+    } else {
+        // ELSE it is a tie, input "It's a tie!"
+        winner = "It's a tie!";
+    }
+
+    console.log(winner);
+    console.log(`Computer: ${computerScore} | You: ${humanScore}`);
 }
