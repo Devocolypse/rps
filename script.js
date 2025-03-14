@@ -24,16 +24,13 @@ function getHumanChoice() {
     return choice;
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice, computerChoice, round = 1) {
     // convert humanChoice (HC) to lowercase
     humanChoice = humanChoice.toLowerCase();
     // convert computerChoice (CC) to lowercase
     computerChoice = computerChoice.toLowerCase();
     // create a new string variable called "winner"
     let winner;
-
-    console.log("Computer has chosen " + computerChoice)
-    console.log("Player has chosen " + humanChoice)
 
     // IF CC equals "rock" and HC equals "scissors", input "You Lose! Rock beats scissors." into "winner" and increment score
     if (computerChoice === "rock" && humanChoice === "scissors") {
@@ -64,18 +61,53 @@ function playRound(humanChoice, computerChoice) {
         winner = "It's a tie!";
     }
 
-    console.log(winner);
+    console.groupCollapsed(`Round ${round}`)
+    console.log("Computer has chosen " + computerChoice)
+    console.log("Player has chosen " + humanChoice)
     console.log(`Computer: ${computerScore} | You: ${humanScore}`);
+    console.groupEnd(`Round ${round}`)
+    
+    console.log(winner);
 }
 
-function playGame(rounds) {
+function playGame(rounds = 1) {
     // create a counter variable, set to 0
+    let i = 0;
+
     // WHILE the counter is less than "rounds", increment counter by 1
+    while (i < rounds) {
         // create a new string variable that stores the human's choice
+        const humanSelection = getHumanChoice();
         // create a new string variable that stores the computer's choice
-        // call playRound() and pass it both player's choices
+        const computerSelection = getComputerChoice();
+        // call playRound() and pass it both player's choices as well as the current round
+        playRound(humanSelection, computerSelection, i + 1);
+
+        i++
+    }
+
     // IF the human has a higher score after however many rounds, declare them the winner
-    // ELSE IF the computer got the upper hand, declare it the winner
-    // ELSE declare the game a draw
+    if (humanScore > computerScore) {
+        console.log("Hell yeah, you won the game!")
+    } else if (computerScore > humanScore) {
+        // ELSE IF the computer got the upper hand, declare it the winner
+        console.log("Drat, you lost the game!")
+    } else {
+        // ELSE declare the game a draw
+        console.log("It's a draw! That's somewhat underwhelming.")
+    }
+
     // report the final score
+    console.log(
+        `
+    Final score
+    -----------
+    You: ${humanScore}
+    CPU: ${computerScore}
+
+    -----------
+    # of Rounds: ${rounds}
+    -----------
+    `
+    )
 }
