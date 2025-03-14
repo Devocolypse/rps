@@ -67,3 +67,15 @@ function playRound(humanChoice, computerChoice) {
     console.log(winner);
     console.log(`Computer: ${computerScore} | You: ${humanScore}`);
 }
+
+function playGame(rounds) {
+    // create a counter variable, set to 0
+    // WHILE the counter is less than "rounds", increment counter by 1
+        // create a new string variable that stores the human's choice
+        // create a new string variable that stores the computer's choice
+        // call playRound() and pass it both player's choices
+    // IF the human has a higher score after however many rounds, declare them the winner
+    // ELSE IF the computer got the upper hand, declare it the winner
+    // ELSE declare the game a draw
+    // report the final score
+}
