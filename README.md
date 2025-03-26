@@ -1,5 +1,5 @@
 # RPS - Web Dev Edition
-Play the classic Rock Paper Scissors game, but in your browser console! Available in every flavor of browser (excepet maybe IE, that stuff is ancient so who knows what would happen)!
+Play the classic Rock Paper Scissors game, but in your browser console! Available in every flavor of browser (except maybe IE, that stuff is ancient so who knows what would happen)!
 
 ![Prevew](./preview.gif)
 
