@@ -83,6 +83,8 @@ function playRound(humanChoice, computerChoice = getComputerChoice(), round = 1)
     reportRound(humanChoice, computerChoice, winner);
 }
 
+
+
 function playGame(rounds = 1) {
     // create a counter variable, set to 0
     let i = 0;
