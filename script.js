@@ -1,6 +1,15 @@
 let humanScore = 0;
 let computerScore = 0;
 
+// RPS button event listeners
+const rockBtn = document.querySelector('.rock');
+const paperBtn = document.querySelector('.paper');
+const scissorsBtn = document.querySelector('.scissors');
+
+rockBtn.addEventListener("click", () => playRound('rock'));
+paperBtn.addEventListener("click", () => playRound('paper'));
+scissorsBtn.addEventListener("click", () => playRound('scissors'));
+
 function getComputerChoice() {
     // create a new integer variable for a random number & set it to a random number between 1 and 3
     let randomNum = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
@@ -24,7 +33,17 @@ function getHumanChoice() {
     return choice;
 }
 
-function playRound(humanChoice, computerChoice, round = 1) {
+function reportRound(humanChoice, computerChoice, winner) {
+    const choices = document.querySelector('.choices');
+    const verdict = document.querySelector('.verdict');
+    const score = document.querySelector('.score');
+
+    choices.textContent = `You chose ${humanChoice}. The Computer chose ${computerChoice}.`;
+    verdict.textContent = winner;
+    score.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+}
+
+function playRound(humanChoice, computerChoice = getComputerChoice(), round = 1) {
     // convert humanChoice (HC) to lowercase
     humanChoice = humanChoice.toLowerCase();
     // convert computerChoice (CC) to lowercase
@@ -34,7 +53,7 @@ function playRound(humanChoice, computerChoice, round = 1) {
 
     // IF CC equals "rock" and HC equals "scissors", input "You Lose! Rock beats scissors." into "winner" and increment score
     if (computerChoice === "rock" && humanChoice === "scissors") {
-        winner = "You Lose! Rock beats scissors";
+        winner = "You Lose! Rock beats scissors.";
         computerScore++;
     } else if (computerChoice === "paper" && humanChoice === "rock") {
         // IF CC equals "paper" and HC equals "rock", input "You Lose! Paper beats rock." into "winner" and increment score
@@ -61,13 +80,7 @@ function playRound(humanChoice, computerChoice, round = 1) {
         winner = "It's a tie!";
     }
 
-    console.groupCollapsed(`Round ${round}`)
-    console.log("Computer has chosen " + computerChoice)
-    console.log("Player has chosen " + humanChoice)
-    console.log(`Computer: ${computerScore} | You: ${humanScore}`);
-    console.groupEnd(`Round ${round}`)
-    
-    console.log(winner);
+    reportRound(humanChoice, computerChoice, winner);
 }
 
 function playGame(rounds = 1) {
