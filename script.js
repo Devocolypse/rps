@@ -94,7 +94,11 @@ function playGame() {
         roundsInput.value = '';
         roundsInput.focus();
     } else {
-        alert('First to win these number of rounds: ' + firstToRounds);
+        const roundsContainer = document.querySelector('.roundsContainer');
+        const currentRound = document.createElement('div');
+        currentRound.textContent = "Round 1";
+
+        roundsContainer.replaceWith(currentRound)
     }
 }
 
