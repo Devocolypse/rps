@@ -5,10 +5,12 @@ let computerScore = 0;
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
+const playRoundsBtn = document.querySelector('.playRounds')
 
 rockBtn.addEventListener("click", () => playRound('rock'));
 paperBtn.addEventListener("click", () => playRound('paper'));
 scissorsBtn.addEventListener("click", () => playRound('scissors'));
+playRoundsBtn.addEventListener("click", () => playGame());
 
 function getComputerChoice() {
     // create a new integer variable for a random number & set it to a random number between 1 and 3
@@ -83,46 +85,57 @@ function playRound(humanChoice, computerChoice = getComputerChoice(), round = 1)
     reportRound(humanChoice, computerChoice, winner);
 }
 
+function playGame() {
+    const roundsInput = document.querySelector('#roundsInput');
+    const firstToRounds = parseInt(roundsInput.value);
 
-
-function playGame(rounds = 1) {
-    // create a counter variable, set to 0
-    let i = 0;
-
-    // WHILE the counter is less than "rounds", increment counter by 1
-    while (i < rounds) {
-        // create a new string variable that stores the human's choice
-        const humanSelection = getHumanChoice();
-        // create a new string variable that stores the computer's choice
-        const computerSelection = getComputerChoice();
-        // call playRound() and pass it both player's choices as well as the current round
-        playRound(humanSelection, computerSelection, i + 1);
-
-        i++
-    }
-
-    // IF the human has a higher score after however many rounds, declare them the winner
-    if (humanScore > computerScore) {
-        console.log("Hell yeah, you won the game!")
-    } else if (computerScore > humanScore) {
-        // ELSE IF the computer got the upper hand, declare it the winner
-        console.log("Drat, you lost the game!")
+    if (isNaN(firstToRounds)) {
+        alert('You must enter a whole number only (no playing 1.25 rounds!)')
+        roundsInput.value = '';
+        roundsInput.focus();
     } else {
-        // ELSE declare the game a draw
-        console.log("It's a draw! That's somewhat underwhelming.")
+        alert('First to win these number of rounds: ' + firstToRounds);
     }
-
-    // report the final score
-    console.log(
-    `
-    Final score
-    -----------
-    You: ${humanScore}
-    CPU: ${computerScore}
-
-    -----------
-    # of Rounds: ${rounds}
-    -----------
-    `
-    )
 }
+
+// function playGame(rounds = 1) {
+//     // create a counter variable, set to 0
+//     let i = 0;
+
+//     // WHILE the counter is less than "rounds", increment counter by 1
+//     while (i < rounds) {
+//         // create a new string variable that stores the human's choice
+//         const humanSelection = getHumanChoice();
+//         // create a new string variable that stores the computer's choice
+//         const computerSelection = getComputerChoice();
+//         // call playRound() and pass it both player's choices as well as the current round
+//         playRound(humanSelection, computerSelection, i + 1);
+
+//         i++
+//     }
+
+//     // IF the human has a higher score after however many rounds, declare them the winner
+//     if (humanScore > computerScore) {
+//         console.log("Hell yeah, you won the game!")
+//     } else if (computerScore > humanScore) {
+//         // ELSE IF the computer got the upper hand, declare it the winner
+//         console.log("Drat, you lost the game!")
+//     } else {
+//         // ELSE declare the game a draw
+//         console.log("It's a draw! That's somewhat underwhelming.")
+//     }
+
+//     // report the final score
+//     console.log(
+//     `
+//     Final score
+//     -----------
+//     You: ${humanScore}
+//     CPU: ${computerScore}
+
+//     -----------
+//     # of Rounds: ${rounds}
+//     -----------
+//     `
+//     )
+// }
