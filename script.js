@@ -1,11 +1,12 @@
 let humanScore = 0;
 let computerScore = 0;
+let round = 0;
 
 // RPS button event listeners
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
-const playRoundsBtn = document.querySelector('.playRounds')
+const playRoundsBtn = document.querySelector('.playRounds');
 
 rockBtn.addEventListener("click", () => playRound('rock'));
 paperBtn.addEventListener("click", () => playRound('paper'));
@@ -39,13 +40,17 @@ function reportRound(humanChoice, computerChoice, winner) {
     const choices = document.querySelector('.choices');
     const verdict = document.querySelector('.verdict');
     const score = document.querySelector('.score');
+    const currentRound = document.querySelector('.currentRound');
 
     choices.textContent = `You chose ${humanChoice}. The Computer chose ${computerChoice}.`;
     verdict.textContent = winner;
     score.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+
+    round++;
+    currentRound.textContent = `Round ${round}`;
 }
 
-function playRound(humanChoice, computerChoice = getComputerChoice(), round = 1) {
+function playRound(humanChoice, computerChoice = getComputerChoice()) {
     // convert humanChoice (HC) to lowercase
     humanChoice = humanChoice.toLowerCase();
     // convert computerChoice (CC) to lowercase
@@ -96,9 +101,12 @@ function playGame() {
     } else {
         const roundsContainer = document.querySelector('.roundsContainer');
         const currentRound = document.createElement('div');
-        currentRound.textContent = "Round 1";
+        currentRound.classList.add('currentRound');
 
-        roundsContainer.replaceWith(currentRound)
+        round++;
+        currentRound.textContent = `Round ${round}`;
+
+        roundsContainer.replaceWith(currentRound);
     }
 }
 
