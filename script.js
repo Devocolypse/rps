@@ -117,6 +117,12 @@ function playGame() {
         roundsInput.value = '';
         roundsInput.focus();
     } else {
+        // show buttons
+        rockBtn.hidden = false;
+        paperBtn.hidden = false;
+        scissorsBtn.hidden = false;
+
+        // replace input for setting # of rounds with a round tracker
         firstToRounds = checkRoundsInput;
         const roundsContainer = document.querySelector('.roundsContainer');
         const currentRound = document.createElement('div');
