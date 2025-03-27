@@ -1,12 +1,17 @@
 let humanScore = 0;
 let computerScore = 0;
 let round = 0;
+let firstToRounds = 0;
 
 // RPS button event listeners
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
 const scissorsBtn = document.querySelector('.scissors');
 const playRoundsBtn = document.querySelector('.playRounds');
+const choices = document.querySelector('.choices');
+const verdict = document.querySelector('.verdict');
+const score = document.querySelector('.score');
+const gameInfo = document.querySelector('.gameInfo');
 
 rockBtn.addEventListener("click", () => playRound('rock'));
 paperBtn.addEventListener("click", () => playRound('paper'));
@@ -37,17 +42,20 @@ function getHumanChoice() {
 }
 
 function reportRound(humanChoice, computerChoice, winner) {
-    const choices = document.querySelector('.choices');
-    const verdict = document.querySelector('.verdict');
-    const score = document.querySelector('.score');
     const currentRound = document.querySelector('.currentRound');
-
+    
     choices.textContent = `You chose ${humanChoice}. The Computer chose ${computerChoice}.`;
     verdict.textContent = winner;
     score.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
-
-    round++;
     currentRound.textContent = `Round ${round}`;
+}
+
+function reportWinner(winner) {
+    const winTag = document.createElement('p');
+    winTag.classList.add('winTag');
+    winTag.textContent = `${winner} won the game!`;
+
+    gameInfo.appendChild(winTag);
 }
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
@@ -87,18 +95,29 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         winner = "It's a tie!";
     }
 
-    reportRound(humanChoice, computerChoice, winner);
+    if (humanScore >= firstToRounds) {
+        reportRound(humanChoice, computerChoice, winner);
+        reportWinner('You');
+    } else if (computerScore >= firstToRounds) {
+        reportRound(humanChoice, computerChoice, winner);
+        reportWinner('The Computer');
+    } else {
+        round++;
+        reportRound(humanChoice, computerChoice, winner);
+    }
+
 }
 
 function playGame() {
     const roundsInput = document.querySelector('#roundsInput');
-    const firstToRounds = parseInt(roundsInput.value);
+    const checkRoundsInput = parseInt(roundsInput.value);
 
-    if (isNaN(firstToRounds)) {
+    if (isNaN(checkRoundsInput)) {
         alert('You must enter a whole number only (no playing 1.25 rounds!)')
         roundsInput.value = '';
         roundsInput.focus();
     } else {
+        firstToRounds = checkRoundsInput;
         const roundsContainer = document.querySelector('.roundsContainer');
         const currentRound = document.createElement('div');
         currentRound.classList.add('currentRound');
