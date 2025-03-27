@@ -51,6 +51,12 @@ function reportRound(humanChoice, computerChoice, winner) {
 }
 
 function reportWinner(winner) {
+    // hide rps buttons to prevent duplicating win tag
+    rockBtn.hidden = true;
+    paperBtn.hidden = true;
+    scissorsBtn.hidden = true;
+
+    // create and display win tag
     const winTag = document.createElement('p');
     winTag.classList.add('winTag');
     winTag.textContent = `${winner} won the game!`;
